@@ -1,0 +1,7 @@
+path: C:\Users\manue\PycharmProjects\ML-for_HoloLens-py3.9\dataset  # dataset root dir
+train: C:\Users\manue\PycharmProjects\ML-for_HoloLens-py3.9\dataset\images\train # train images
+val: C:\Users\manue\PycharmProjects\ML-for_HoloLens-py3.9\dataset\images\val  # val images
+test: C:\Users\manue\PycharmProjects\ML-for_HoloLens-py3.9\dataset\images\test # test images
+
+nc: 6
+names: ['wrench','screwdriver','pliers','multitool','adjustable_wrench','socket_wrench']
