@@ -51,8 +51,7 @@ if __name__ == '__main__':
     # the number of false negatives. -> alle echten predicted positiven aus der Menge aller positiven
     # Precision Recall Curve sollte waagerecht sein udn dann am Ende abfallen.
     # mAP sollte auf 1 kommen... ist basically die Fläche unter PRC.
-    results = model.train(data='dataset/data.yaml', epochs=500, imgsz=640, batch=64, patience=100, lr0=0.01, lrf=0.001,
-                          hsv_v=0.2, translate= 0.23, degrees=35, scale=0.3, perspective=0.05, device=gpu)
+    results = model.train(data='dataset/data.yaml', epochs=300, imgsz=640, batch=32, patience=100, device=gpu)
 
     # Run inference with the YOLOv8n model on the 'bus.jpg' image
     results = model('dataset/test/images/20240318_133936_HoloLens.jpg', device=gpu)
