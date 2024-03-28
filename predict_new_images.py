@@ -137,11 +137,7 @@ def run_model(model, final_path, class_list, display_bool, i):
         (x, y, x2, y2) = bbox
         cv2.rectangle(image, (x, y), (x2, y2), (0, 0, 225), 3)
 
-        # print results in console
-        print('Found this in image:')
         cls_name = class_list[cls]
-        print("x", x, "; y", y)
-        print(str(cls), str(cls_name))
 
         # print results on images
         if y <= 25:
@@ -151,15 +147,20 @@ def run_model(model, final_path, class_list, display_bool, i):
             cv2.putText(image, str(cls) + "; " + str(cls_name) + "; " + str("%.2f" % round(conf, 2)), (x, y + 35),
                         cv2.FONT_HERSHEY_PLAIN, 3, (0, 0, 225), 3)
 
+        # print results in console
+        if display_bool:
+            print('Found this in image:')
+            print("x", x, "; y", y)
+            print(str(cls), str(cls_name))
+
     # save .jpg
     cv2.imwrite('runs/detect/train{}/predictions/prediction{:03d}.jpg'.format(trainNr, i), image)
     print('Image saved in: runs/detect/train{}/predictions/prediction{:03d}.jpg'.format(trainNr, i))
     print('=========================================================')
 
-    # resize the image for display
-    image = cv2.resize(image, (image.shape[1] // 2, image.shape[0] // 2))
-
     if display_bool:
+        # resize the image for display
+        image = cv2.resize(image, (image.shape[1] // 2, image.shape[0] // 2))
         display_image(image)
     else:
         pass
