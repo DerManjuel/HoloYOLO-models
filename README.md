@@ -1,33 +1,50 @@
-# Foobar
+# HoloYOLO-models
 
-Foobar is a Python library for dealing with word pluralization.
+HoloYOLO-models is a project for object detection on the HoloLens 2. In this part of the project different YOLOv8
+architectures are tested, using the ultralytics library.
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Clone repository and install torch before ultralytics. This way you make sure to be able to install the requirements
+for cuda correctly. This ultralytics should install all the different packages you need, such as NumPy.
 
 ```bash
-pip install foobar
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+pip install ultralytics
 ```
 
 ## Usage
 
+### retrainYOLO.py
+
+retrainYOLO.py is used to retrain YOLOv8. Here you can easily change the different YOLO-versions.
+Simply change following line of code. Different models can be found [here](https://docs.ultralytics.com/models/).
+
 ```python
-import foobar
-
-# returns 'words'
-foobar.pluralize('word')
-
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
+model = YOLO('yolov8n.pt')
 ```
 
-## Contributing
+You can also adjust the training parameters in the following line. For more training parameters visit 
+the [ultralytics docs](https://docs.ultralytics.com/modes/train/#train-settings).
 
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
+```python
+results = model.train(data='dataset/data.yaml', epochs=500, imgsz=640, batch=64, patience=100, device=gpu)
+```
 
-Please make sure to update tests as appropriate.
+Before starting the training process be sure to update the 'data.yaml' file, as this file is used to find the training,
+validation and test data, as well as the configuration for the classes your model is supposed to find.
+
+
+### predict_new_images.py
+
+predict_new_images.py is used to test the trained models. Here you can simply change the number of your training run, e.g:
+
+```python
+trainNr = '4'
+```
+
+Be sure to change the path to your personal dataset.
+
+```python
+path = r"\Path\to\your\dataset\test\images"
+```
