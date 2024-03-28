@@ -41,6 +41,7 @@ def check_display():
     """
     disp = input('Do you want the images to be displayed? [Y/N]')
     if disp == 'Y':
+        print('Press ESC to move to next prediction.')
         return True
     elif disp == 'N':
         return False
@@ -90,7 +91,7 @@ def iterate_directory(model, path, class_list, display_bool):
     directory = os.fsencode(path)
     i = 0
 
-    print('Calculating predictions...\nPress ESC to move to next prediction.')
+    print('Calculating predictions...')
 
     for file in os.listdir(directory):
         filename = os.fsdecode(file)
@@ -180,7 +181,7 @@ def display_image(image):
 
 
 # check if directory is present and exit if necessary
-trainNr = ''
+trainNr = '3'
 path = r"C:\Users\manue\PycharmProjects\ML-for_HoloLens-py3.9\dataset\test\images"
 
 check_dir()
