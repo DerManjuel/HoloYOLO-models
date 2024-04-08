@@ -183,7 +183,7 @@ def display_image(image):
 
 # check if directory is present and exit if necessary
 trainNr = '6'
-path = r"C:\Users\manue\PycharmProjects\ML-for_HoloLens-py3.9\dataset\test\images"
+path = r"dataset\test\images"
 
 check_dir()
 
