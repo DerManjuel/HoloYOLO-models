@@ -1,26 +1,52 @@
-import asyncio
-import websockets
+import socket
 
-async def process_image(image):
-    # Add your image processing logic here (e.g., using YOLOv8)
-    processed_result = "Processed result"
-    return processed_result
+# Set up server
+server_ip = '192.168.159.104'  # '192.168.159.117' # HoloLens Marlon
+server_port = 8888
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind((server_ip, server_port))
+server_socket.listen(5)  # Maximum number of queued connections
 
-async def handle_client(websocket, path):
+try:
     while True:
+        # Accept connection
+        print("Waiting for connection...")
+        client_socket, client_address = server_socket.accept()
+        print("Connected to:", client_address)
+
         try:
-            # Receive image from client
-            image = await websocket.recv()
+            # Send confirmation to client
+            client_socket.sendall(b"Connected to server.")
 
-            # Process image
-            processed_result = await process_image(image)
+            # Receive image data from client
+            image_data = b""
+            while True:
+                chunk = client_socket.recv(4096)  # Adjust buffer size as needed
+                if not chunk:
+                    break
+                image_data += chunk
 
-            # Send processed result back to client
-            await websocket.send(processed_result)
-        except websockets.exceptions.ConnectionClosedError:
-            break
+            # Save the received image data to a file (e.g., "received_photo.jpg")
+            with open("received_photo.jpg", "wb") as file:
+                file.write(image_data)
+            print("Received and saved image data to 'received_photo.jpg'.")
 
-start_server = websockets.serve(handle_client, "localhost", 8765)
+            # Process the received image data as needed
+            # You can use image processing libraries like OpenCV to analyze or manipulate the image
 
-asyncio.get_event_loop().run_until_complete(start_server)
-asyncio.get_event_loop().run_forever()
+            # Send response to client
+            client_socket.sendall(b"Image received successfully.")
+
+        except Exception as e:
+            print("Error during communication:", e)
+
+        finally:
+            # Close connection
+            client_socket.close()
+            print("Connection closed.")
+
+except Exception as e:
+    print("Error:", e)
+
+finally:
+    server_socket.close()
