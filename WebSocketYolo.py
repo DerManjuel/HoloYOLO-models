@@ -2,7 +2,7 @@ import socket
 
 # Set up server
 server_ip = '192.168.159.104'  # '192.168.159.117' # HoloLens Marlon
-server_port = 8888
+server_port = 8889
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((server_ip, server_port))
 server_socket.listen(5)  # Maximum number of queued connections
@@ -26,6 +26,8 @@ try:
                     break
                 image_data += chunk
 
+            print(image_data)
+            #print(image_data)
             # Save the received image data to a file (e.g., "received_photo.jpg")
             with open("received_photo.jpg", "wb") as file:
                 file.write(image_data)
