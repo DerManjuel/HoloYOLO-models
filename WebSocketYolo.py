@@ -36,10 +36,10 @@ try:
             print(type(image_data))
 
             # Save the received image data to a file (e.g., "received_photo.jpg")
-            with open("received_photo.png", "wb") as file:
+            with open("HoloLens2Prediction/recieved/received_photo.png", "wb") as file:
                 file.write(image_data)
 
-            image = cv2.imread("received_photo.png")
+            image = cv2.imread("HoloLens2Prediction/recieved/received_photo.png")
 
             # Assuming 'imageData' is the byte array received from Unity
             # Decode the JPEG byte array into an image (assuming it's already in RGB format)
@@ -90,7 +90,7 @@ try:
                 print(str(cls), str(cls_name))
 
             # save .jpg
-            cv2.imwrite('predictionImage.jpg', image)
+            cv2.imwrite('HoloLens2Prediction/predicted/predictionImage.jpg', image)
             print('Image prediction saved.')
             print('=========================================================')
 
