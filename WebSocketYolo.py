@@ -14,6 +14,12 @@ server_socket.listen(5)  # Maximum number of queued connections
 # check for gpu
 gpu = gpu_availablility.checkgpu()
 
+model = YOLO("runs/detect/train5/weights/best.pt")
+print('Model loaded.')
+class_list = model.model.names
+print('Class List:', class_list)
+print('==============================================================================')
+
 try:
     while True:
         # Accept connection
@@ -40,23 +46,6 @@ try:
                 file.write(image_data)
 
             image = cv2.imread("HoloLens2Prediction/recieved/received_photo.png")
-
-            # Assuming 'imageData' is the byte array received from Unity
-            # Decode the JPEG byte array into an image (assuming it's already in RGB format)
-            #image = cv2.imdecode(np.frombuffer(image_data, dtype=np.uint8), cv2.IMREAD_COLOR)
-
-            # Convert from BGRA to RGB
-            #image = cv2.cvtColor(image, cv2.COLOR_BGRA2RGB)
-
-            # Now, 'image' should be in RGB format, proceed with saving it or any further processing
-            # For example, saving the image
-            #cv2.imwrite('output.jpg', image)
-
-            model = YOLO("runs/detect/train6/weights/best.pt")
-            print('Model loaded.')
-            class_list = model.model.names
-            print('Class List:', class_list)
-            print('==============================================================================')
 
             # Run inference with the YOLOv8n model on an image
             results = model(image, device=gpu)
