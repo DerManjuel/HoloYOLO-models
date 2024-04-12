@@ -48,3 +48,23 @@ Be sure to change the path to your personal dataset.
 ```python
 path = r"\Path\to\your\dataset\test\images"
 ```
+
+### Server.py
+
+Server.py is a python server for testing the connection to the HoloLens 2. Simply change the server ip to your ip.
+
+````python
+server_ip = 'your.server.ip.address'
+````
+
+### WebSocketYolo.py
+
+WebSocketYolo.py is a python server for receiving photographs taken by HoloLens 2.
+Here you are also supposed to change the server ip to your server ip.
+
+````python
+server_ip = 'your.server.ip.address'
+````
+
+The received image is first stored as `.png` file in `"HoloLens2Prediction/recieved/received_photo.png"` folder and then again red by cv2 to be analysed by the YOLOv8 network.
+The image with the prediction results is stored in `'HoloLens2Prediction/predicted/predictionImage.jpg'` folder.
