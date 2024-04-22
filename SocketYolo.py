@@ -6,7 +6,7 @@ import os
 import gpu_availablility
 
 # Set up server
-server_ip = '192.168.159.114'  # '192.168.159.117' # HoloLens Marlon 192.168.159.104
+server_ip = '192.168.159.116'  # '192.168.159.117' # HoloLens Marlon 192.168.159.104
 server_port = 8889
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((server_ip, server_port))

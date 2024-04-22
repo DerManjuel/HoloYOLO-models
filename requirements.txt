@@ -3,3 +3,5 @@ numpy~=1.24.1
 ultralytics~=8.1.29
 --find-links https://download.pytorch.org/whl/cu121
 #torch~=2.2.1+cu121
+websockets~=12.0
+torch~=2.2.2+cu121
