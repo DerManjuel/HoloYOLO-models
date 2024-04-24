@@ -2,11 +2,10 @@ import socket
 import cv2
 import numpy as np
 from ultralytics import YOLO
-import os
 import gpu_availablility
 
 # Set up server
-server_ip = '192.168.159.116'
+server_ip = '127.0.0.1' # 192.168.159.116
 server_port = 8889
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((server_ip, server_port))
@@ -39,7 +38,7 @@ try:
                     break
                 image_data += chunk
 
-            print(type(image_data))
+            print(image_data, "  ;  ", type(image_data))
 
             # Save the received image data to a file (e.g., "received_photo.jpg")
             with open("HoloLens2Prediction/recieved/received_photo.png", "wb") as file:
