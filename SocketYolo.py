@@ -11,10 +11,10 @@ def convert_image_to_byte_array(img):
     _, buffer = cv2.imencode('.jpg', img)
     byte_array = base64.b64encode(buffer)
     return byte_array
-8
+
 
 # Set up server
-server_ip = '192.168.159.116' # 192.168.159.116 # Computer IP
+server_ip = '192.168.159.118' # 192.168.159.116 # Computer IP
 server_port = 8889
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((server_ip, server_port))
